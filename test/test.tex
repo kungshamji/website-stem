@@ -1,0 +1,149 @@
+\documentclass[twoside]{amsart}
+\usepackage{amssymb,latexsym}
+\usepackage{times}
+\usepackage{graphics}
+\usepackage{listings}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, urlcolor=blue}
+\usepackage{tikz}
+
+\usetikzlibrary{matrix,arrows}
+
+\usepackage[version=3]{mhchem}
+
+%\usepackage{graphics}
+
+\oddsidemargin-0.15cm
+\evensidemargin-0.15cm
+\topmargin-1.8cm     %I recommend adding these three lines to increase the 
+\textwidth17.5cm   %amount of usable space on the page (and save trees)
+\textheight24.5cm  
+\parindent0.0em
+
+%This next line (when uncommented) allow you to use encapsulated
+%postscript files for figures in your document
+%\usepackage{epsfig}
+
+%plain makes sure that we have page numbers
+\pagestyle{plain}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{axiom}{Axiom}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+\title{Notes and Solutions to \emph{ Thermal Physics } by Charles Kittle and Herbert Kroemer }
+
+\author{
+  Ernest Yeung - Los Angeles
+       }
+\date{Fall 2008}
+
+\email{ernestyalumni@gmail.com}
+\urladdr{http://ernestyalumni.wordpress.com}
+\thanks{I am crowdfunding on Tilt/Open to support basic sciences research: \url{ernestyalumni.tilt.com}.  If you find this pdf (and LaTeX file) valuable and/or helpful, please consider donating to my crowdfunding campaign. There is also a Paypal button there and it's easy to donate with PayPal, as I had recently to the Memorial Fund for the creator of Python's matplotlib.  But the most important thing is for anyone, anywhere, and at anytime be able to learn thermodynamics and use it for research and application and so I want to keep this as openly public as possible, in the spirit of open-source software.  Tilt/Open is an open-source crowdfunding platform that is unique in that it offers open-source tools for building a crowdfunding campaign.  Tilt/Open has been used by Microsoft and Dick’s Sporting Goods to crowdfund their respective charity causes.} 
+
+
+%This defines a new command \questionhead which takes one argument and
+%prints out Question #. with some space.
+\newcommand{\questionhead}[1]
+  {\bigskip\bigskip
+   \noindent{\small\bf Question #1.}
+   \bigskip}
+
+\newcommand{\problemhead}[1]
+  {
+   \noindent{\small\bf Problem #1.}
+   }
+
+\newcommand{\exercisehead}[1]
+  {
+   \noindent{\small\bf Exercise #1.}
+   \smallskip}
+
+\newcommand{\solutionhead}[1]
+  {
+   \noindent{\small\bf Solution #1.}
+   }
+
+
+%-----------------------------------
+\begin{document}
+%-----------------------------------
+\definecolor{darkgreen}{rgb}{0,0.4,0}
+\lstset{language=Python,
+ frame=bottomline,
+ basicstyle=\scriptsize,
+ identifierstyle=\color{blue},
+ keywordstyle=\bfseries,
+ commentstyle=\color{darkgreen},
+ stringstyle=\color{red},
+ }
+
+
+\begin{abstract}
+These are notes and solutions to Kittle and Kroemer's \textbf{Thermal Physics}.  The solutions are (almost) complete: I will continuously add to subsections, before the problems in each chapter, my notes that I write down as I read (and continuously reread).  
+
+I am attempting a manifold formulation of the equilibrium states in the style of Schutz's \textbf{Geometrical Methods of Mathematical Physics} and will point out how it applies directly to \textbf{Thermal Physics}.  Other useful references along this avenue of investigation is provided at the very bottom in the references.  
+
+Any and all feedback, including negative feedback, is welcomed and you can reach me by email or my \href{http://ernestyalumni.wordpress.com}{wordpress.com blog}.  
+
+You are free to copy, edit, paste, and add onto the pdf and LaTeX files as you like in the spirit of open-source software.  You are responsible adults to use these notes and solutions as governed by the Caltech Honor Code: ``No member of the Caltech community shall take unfair advantage of any other member of the Caltech community'' and follow the Honor Code in spirit.   
+
+\end{abstract}
+
+
+\maketitle
+
+\textsc{Second Edition}.  \textbf{Thermal Physics}.  Charles Kittel.  Herbert Kroemer.  W. H. Freeman and Company.  New York.  QC311.5.K52 1980  536'.7  ISBN 0-7167-1088-9
+
+\section{States of a Model System}
+
+\section{Entropy and Temperature}
+
+\section{\textsc{Second Edition}
+}
+
+\subsection*{Thermal Equilibrium}
+
+EY : 20150821 Based on considering the physical setup of two systems that can only exchange energy between each other, that are in thermal contact, this is a derivation of temperature.
+
+$U = U_1 + U_2$ is constant total energy of 2 systems $1,2$ in thermal contact \\
+multiplicity $g(N,U)$ of combined system is 
+\[
+g(N,U) = \sum_{U_1 \leq U} g_1(N_1,U_1)g_2(N_2,U-U_1)
+\]
+The ``differential'' of $g(N,U)$ is 
+\[
+dg = \left( \frac{\partial g_1}{ \partial U_1 } \right)_{N_1} g_2 dU + g_1\left( \frac{\partial g_2 }{ \partial U_2 } \right)_{N_2} dU_2 = 0 
+\]
+EY : 20150821 This step can be made mathematically sensible by considering the exterior derivative $d$ of $g \in C^{\infty}(\Sigma)$, where $\Sigma$ is the manifold of states of the system, with local coordinates $N,U$, where $U$ happens to be a global coordinate. Then, consider a curve in $\Sigma$ s.t. it has no component in $\frac{\partial}{ \partial N}$, $\frac{\partial}{ \partial N_1}$, and this curve is a ``null curve'' so that the vector field $X\in \mathfrak{X}(\Sigma)$ generated by this curve is s.t. $dg(X)=0$.  
+
+With $-dU_1 = dU_2$,
+\[
+\frac{1}{g_1} \left( \frac{\partial g_1}{ \partial U_1}\right)_{N_1} = \frac{1}{g_2} \left( \frac{\partial g_2}{ \partial U_2} \right)_{N_2} \Longrightarrow \left( \frac{ \partial \ln{g_1} }{ \partial U_1} \right)_{N_1} = \left( \frac{ \partial \ln{g_2}}{ \partial U_2} \right)_{N_2}
+\]
+Define
+\[
+\sigma(N,U) := \ln{ g(N,U)}
+\]
+Then
+\[
+\Longrightarrow \left( \frac{ \partial \sigma_1}{ \partial U_1} \right)_{N_1} = \left( \frac{ \partial \sigma_2}{ \partial U_2} \right)_{N_2}
+\]
+
+
+
+\subsection*{Temperature}
+
+$T_1=T_2$ - temperatures of 2 systems in thermal equilibrium are equal.  
+
+\[
+\Longrightarrow \frac{1}{T} = k_B \left( \frac{ \partial \sigma }{ \partial U} \right)_N
+\]
+Experimentally, $k_B = 1.381 \times 10^{-23} \, J/K = 1.381\times 10^{-16} \, \text{ ergs}/ K$.  
+\end{document}
